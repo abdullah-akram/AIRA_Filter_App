@@ -119,8 +119,8 @@ class _CustomFloatingActionButtonState extends State<CustomFloatingActionButton>
   AnimationController? _controller;
   late Animation _animation;
   
-Alignment alignment1 = Alignment(0, 0);
-Alignment alignment2 = Alignment(0, 0);
+Alignment alignment1 = Alignment.bottomCenter;
+Alignment alignment2 = Alignment.bottomCenter;
 
 
   @override
@@ -149,93 +149,98 @@ Alignment alignment2 = Alignment(0, 0);
   Widget build(BuildContext context) {
 
     return Container(
-      child: Stack(
-        children: [
-          AnimatedAlign(
-            duration: toggle ? Duration(milliseconds: 275) : Duration(milliseconds: 875),
-            alignment:alignment1,
-            curve: toggle ? Curves.easeIn : Curves.elasticOut,
-            child: AnimatedContainer(
-              duration: toggle
-                  ? Duration(milliseconds: 275)
-                  : Duration(milliseconds: 875),
-              curve: toggle ? Curves.easeIn : Curves.easeOut,
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: AppColor.dark_1,
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Icon(
-                Icons.camera,
-                color: AppColor.light,
-              ),
-            ),
-          ),
-      
-       AnimatedAlign(
-            duration: toggle ? Duration(milliseconds: 275) : Duration(milliseconds: 875),
-            alignment:alignment2,
-            curve: toggle ? Curves.easeIn : Curves.elasticOut,
-            child: AnimatedContainer(
-              duration: toggle
-                  ? Duration(milliseconds: 275)
-                  : Duration(milliseconds: 875),
-              curve: toggle ? Curves.easeIn : Curves.easeOut,
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                color: AppColor.dark_1,
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: Icon(
-                Icons.camera,
-                color: AppColor.light,
-              ),
-            ),
-          ),
-      
-        
-          Transform.rotate(
-            angle: _animation.value * (3 / 4),
-            child: Align(
-              alignment: Alignment.center,
+ height: 200,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Stack(
+          children: [
+            AnimatedAlign(
+              duration: toggle ? Duration(milliseconds: 275) : Duration(milliseconds: 875),
+              alignment:alignment1,
+              curve: toggle ? Curves.easeIn : Curves.elasticOut,
               child: AnimatedContainer(
-                curve: Curves.easeOut,
-                duration: Duration(milliseconds: 300),
-                height: toggle ? 56 : 50,
-                width: toggle ? 56 : 50,
-                child: FloatingActionButton(
-                  onPressed: () {
-                    setState(() {
-                      if (toggle) {
-                        toggle = !toggle;
-                        _controller!.forward();
-                        Future.delayed(Duration(milliseconds: 10) , (){
-              alignment1 = Alignment(-0.5, -0.3);
-                        } );
-                         Future.delayed(Duration(milliseconds: 10) , (){
-              alignment2 = Alignment(0.5, -0.3);
-                        } );
-                      } else {
-                        toggle = !toggle;
-                        _controller!.reverse();
-                        alignment1 = Alignment(0,0);
-                        alignment2 = Alignment(0,0);
-                      }
-                    });
-                  },
-                  child: Icon(
-                    Icons.add,
-                    color: toggle ? AppColor.dark_1 : AppColor.light,
-                  ),
-                  backgroundColor: toggle ? AppColor.pink : AppColor.dark_1,
-                  shape: CircleBorder(), // Round shape
+                duration: toggle
+                    ? Duration(milliseconds: 275)
+                    : Duration(milliseconds: 875),
+                curve: toggle ? Curves.easeIn : Curves.easeOut,
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: AppColor.dark_1,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Icon(
+                  Icons.image_outlined,
+                  color: AppColor.light,
                 ),
               ),
             ),
-          ),
-        ],
+        
+         AnimatedAlign(
+              duration: toggle ? Duration(milliseconds: 275) : Duration(milliseconds: 875),
+              alignment:alignment2,
+              curve: toggle ? Curves.easeIn : Curves.elasticOut,
+              child: AnimatedContainer(
+                duration: toggle
+                    ? Duration(milliseconds: 275)
+                    : Duration(milliseconds: 875),
+                curve: toggle ? Curves.easeIn : Curves.easeOut,
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: AppColor.dark_1,
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Icon(
+                  Icons.photo_camera_outlined,
+                  color: AppColor.light,
+                ),
+              ),
+            ),
+        
+          
+            Transform.rotate(
+              angle: _animation.value * (3 / 4),
+            origin: Offset(0.0, 76.0), // Half the width of the FloatingActionButton
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: AnimatedContainer(
+                  curve: Curves.easeOut,
+                  duration: Duration(milliseconds: 300),
+                  height: toggle ? 56 : 50,
+                  width: toggle ? 56 : 50,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        if (toggle) {
+                          toggle = !toggle;
+                          _controller!.forward();
+                          Future.delayed(Duration(milliseconds: 10) , (){
+                alignment1 = Alignment(-0.4, -0.01);
+                          } );
+                           Future.delayed(Duration(milliseconds: 10) , (){
+                alignment2 = Alignment(0.4, -0.01);
+                          } );
+                        } else {
+                          toggle = !toggle;
+                          _controller!.reverse();
+                          alignment1 = Alignment.bottomCenter;
+                          alignment2 = Alignment.bottomCenter;
+                        }
+                      });
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: toggle ? AppColor.dark_1 : AppColor.light,
+                    ),
+                    backgroundColor: toggle ? AppColor.pink : AppColor.dark_1,
+                    shape: CircleBorder(), // Round shape
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

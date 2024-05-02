@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:aira_filter_app/components/rounded_button.dart';
 import 'package:aira_filter_app/constants/colors.dart';
 import 'package:aira_filter_app/components/login_background.dart';
-import 'package:aira_filter_app/discover_screen.dart';
-import 'package:aira_filter_app/filter_cover.dart';
-import 'package:aira_filter_app/home_screen.dart';
-import 'package:aira_filter_app/saved_presets_screen.dart';
+import 'package:aira_filter_app/ui/discover/discover_screen.dart';
+import 'package:aira_filter_app/ui/filter_cover/filter_cover.dart';
+import 'package:aira_filter_app/ui/home/home_screen.dart';
+import 'package:aira_filter_app/ui/saved/saved_presets_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'create_account_screen.dart'; 
+import 'ui/auth/create_account_screen.dart'; 
 void main() { 
 runApp(MyApp()); 
 } 

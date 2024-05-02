@@ -1,56 +1,39 @@
+import 'package:aira_filter_app/components/navbar.dart';
 import 'package:aira_filter_app/components/rounded_button.dart';
 import 'package:aira_filter_app/constants/colors.dart';
 import 'package:aira_filter_app/components/login_background.dart';
-import 'package:aira_filter_app/create_account_details_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'login_screen.dart';
+import '../../components/rounded_input.dart';
 
-class CreateAccountScreen extends StatelessWidget { 
+class CreateAccountDetailsScreen extends StatelessWidget { 
 @override 
 Widget build(BuildContext context) { 
 	return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar:                 BackNavBar(title: "Create Account"),
+
+
       body: Stack(
         children: [
           CustomBackground(
-            imagePath: 'assets/images/background_carousal.png', // Replace with your background image path
+            imagePath: '', // Replace with your background image path
             opacity: 0.2, // Adjust opacity as needed
-          ),
-          Padding(
+          ), Padding(
             padding: EdgeInsets.all(12.0),
             child: Column(
               
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 40),
-                  child: Image.asset(
-                    'assets/images/sara_shakeel_logo.png',
-                    height: 80,
-                    width: 150,
-                    
-                  ),
-                ),
-                
+               
 
-                const Text(
-                    
-                    textAlign: TextAlign.center,
-                    'Transform your photos and videos with exclusive filters and effects',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontFamily: 'Roboto_Mono',
-                      height: 1.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
                 
                     Container(
-                      margin: const EdgeInsets.fromLTRB(10, 10, 10,30),
+                      margin: const EdgeInsets.fromLTRB(10, 10, 10,10),
                   child: const Text(
-                     textAlign: TextAlign.center,
-                    'With AiRa, you can add stunning filters, effects, and overlays to your photos and take your social media game to the next level.',
+                     textAlign:  TextAlign.start,
+                     'Sign up to get started.',
                     style: TextStyle(
         
                       fontSize: 13,
@@ -59,14 +42,16 @@ Widget build(BuildContext context) {
                     ),
                   ),
                 ),
+
+                //create an edittext widget rounded
+                const RoundedInput(hintText: 'Enter Your Name',type:TextInputType.text),
+                const RoundedInput(hintText: 'Enter Your Email Address',type:TextInputType.emailAddress),
+                const RoundedInput(hintText: 'Create a Password', type: TextInputType.visiblePassword),
+
                RoundedButton(
                   title: 'Create Account',
                   onClick: () {
                     // TODO: Implement button 2 functionality
-                      Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CreateAccountDetailsScreen()),
-                );
                   },
                   
                   bgcolor: AppColor.pink, // Button color
@@ -95,6 +80,8 @@ Widget build(BuildContext context) {
 
                RoundedButton(
                   title: 'Sign up with Google',
+                  
+                  
                   onClick: () {
                     // TODO: Implement button 2 functionality
                   },
@@ -127,12 +114,7 @@ Align(
             style: const TextStyle(color: AppColor.pink,fontWeight: FontWeight.w900), // "Login" text color
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                // Go to login screen when "Login" is tapped
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-
+                // Call your onclick function here
                 print('Login tapped');
               },
           ),
@@ -145,8 +127,8 @@ Align(
               ],
             ),
           ),
-        ],
-      ),
+      ]),
+       
     );
 } 
 } 

@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:aira_filter_app/components/Story_List.dart';
+import 'package:aira_filter_app/ui/home/Story_List.dart';
 import 'package:aira_filter_app/components/bottom_toolbar.dart';
-import 'package:aira_filter_app/components/discover_item.dart';
-import 'package:aira_filter_app/components/home_top_navbar.dart';
-import 'package:aira_filter_app/components/home_trending_item.dart';
-import 'package:aira_filter_app/components/home_try_item.dart';
+import 'package:aira_filter_app/ui/discover/discover_item.dart';
+import 'package:aira_filter_app/ui/home/home_top_navbar.dart';
+import 'package:aira_filter_app/ui/home/home_trending_item.dart';
+import 'package:aira_filter_app/ui/home/home_try_item.dart';
 import 'package:aira_filter_app/components/login_background.dart';
 import 'package:aira_filter_app/components/rounded_button.dart';
 import 'package:aira_filter_app/constants/colors.dart';

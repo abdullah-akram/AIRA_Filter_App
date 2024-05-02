@@ -1,6 +1,6 @@
 import 'package:aira_filter_app/constants/colors.dart';
-import 'package:aira_filter_app/discover_screen.dart';
-import 'package:aira_filter_app/filter_cover.dart';
+import 'package:aira_filter_app/ui/discover/discover_screen.dart';
+import 'package:aira_filter_app/ui/filter_cover/filter_cover.dart';
 import 'package:flutter/material.dart';
 class HomeTrendingItem extends StatelessWidget {
   final List<String> imageUrls;

@@ -8,7 +8,7 @@ List<String> imageUrls = [
   'assets/images/covers/Rectangle6.png',
   'assets/images/covers/Rectangle7.png',
   'assets/images/covers/Rectangle8.png',
-    'assets/images/covers/Rectangle9.png',
+  'assets/images/covers/Rectangle9.png',
 
   // add more URLs if needed
 ];
