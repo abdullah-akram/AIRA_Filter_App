@@ -28,7 +28,7 @@ bool toggle = false;
                           print( "builddddddddddd" );
 
     return Scaffold(
-      appBar: Home_AppBar(title: "Home", onSearchPressed: () => {}),
+      appBar: Home_AppBar(title: "Home"),
       body: Stack(children: <Widget>[
         Opacity(
           opacity: op,

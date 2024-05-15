@@ -16,7 +16,7 @@ class DiscoverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Home_AppBar(title: "Discover", onSearchPressed: () => {}),
+      appBar: Home_AppBar(title: "Discover"),
       body: Stack(children: <Widget>[
         Opacity(
           opacity: 0.3,

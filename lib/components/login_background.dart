@@ -15,7 +15,7 @@ class CustomBackground extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
            transform: const GradientRotation(8),
-          colors: [Colors.pink.withOpacity(0.0), Colors.black,Colors.pink.withOpacity(0.1)],
+          colors: [AppColor.pink.withOpacity(0.0), Colors.black,AppColor.pink.withOpacity(0.1)],
           stops: [0.0, 0.5,1.0],
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
@@ -26,7 +26,7 @@ class CustomBackground extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           transform: const GradientRotation(7),
-          colors: [Colors.pink.withOpacity(0.0), Colors.black,Colors.pink.withOpacity(0.1)],
+          colors: [AppColor.pink.withOpacity(0.0), Colors.black,AppColor.pink.withOpacity(0.1)],
           stops:  [0.0, 0.5,1.0],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,

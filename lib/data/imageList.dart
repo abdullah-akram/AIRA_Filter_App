@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+
 List<String> imageUrls = [
   'assets/images/covers/Rectangle1.png',
   'assets/images/covers/Rectangle2.png',
@@ -27,5 +29,28 @@ List<String> people = [
   'Terry',
   'Jake'
     // add more URLs if needed
+];
+
+
+
+List<String> mainEditsTexts = [
+  'PRESETS',
+  'BRUSHES',
+  'ADJUSTMENTS',
+  'CANVAS',
+    // add more URLs if needed
+];
+
+List<IconData> filterItemIcons = [
+ Icons.brightness_1,
+ Icons.contrast,
+  Icons.exposure,
+  Icons.highlight_sharp,
+  Icons.grain,
+  Icons.vignette,
+  
+ 
+
+
 ];
 

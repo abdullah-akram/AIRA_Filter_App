@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:aira_filter_app/components/notched_container.dart';
 import 'package:aira_filter_app/components/rounded_button.dart';
+import 'package:aira_filter_app/constants/colors.dart';
 import 'package:aira_filter_app/data/imageList.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class FilterCoverScreen extends StatelessWidget {
                               children: <Widget>[
                                 // Two rounded buttons with icons
                                 FloatingActionButton(
-                                  backgroundColor: Colors.pink,
+                                  backgroundColor: AppColor.pink,
                                   shape:
                                       const CircleBorder(), // This makes the button round
 
@@ -62,7 +63,7 @@ class FilterCoverScreen extends StatelessWidget {
                                   child: const Icon(Icons.favorite_outline),
                                 ),
                                 FloatingActionButton(
-                                  backgroundColor: Colors.pink,
+                                  backgroundColor: AppColor.pink,
 
                                   shape:
                                       const CircleBorder(), // This makes the button round
@@ -213,7 +214,7 @@ class FilterCoverScreen extends StatelessWidget {
           child:RoundedButton(
             title: "Try Now",
             onClick: () {},
-            bgcolor: Colors.pink,
+            bgcolor: AppColor.pink,
             width: 130,
             padding: 4,
             margin: 8,
@@ -238,7 +239,7 @@ class FilterCoverScreen extends StatelessWidget {
             // Add your floating action button's onPressed logic here
           },
           child: const Icon(Icons.arrow_drop_down_outlined),
-          backgroundColor: Colors.pink,
+          backgroundColor: AppColor.pink,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

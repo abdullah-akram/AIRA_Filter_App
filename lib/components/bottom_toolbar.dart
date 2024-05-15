@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:aira_filter_app/constants/colors.dart';
+import 'package:aira_filter_app/edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CustomAppBar extends StatefulWidget {
   final int selectedItemIndex;
@@ -68,7 +71,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
         IconButton(
           icon: Icon(widget.selectedItemIndex == index ? iconfilled : icon,
               color: widget.selectedItemIndex == index
-                  ? Colors.pink
+                  ? AppColor.pink
                   : Colors.white),
           onPressed: () {
             switch (index) {
@@ -82,9 +85,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
               case 2:
                 Navigator.pushNamed(context, '/favorites');
                 break;
-              // case 3:
-              //   Navigator.pushNamed(context, '/profile');
-              //   break;
+              case 3:
+                Navigator.pushNamed(context, '/profile');
+                break;
             }
           },
         ),
@@ -98,7 +101,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               height: 10,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.pink,
+                color: AppColor.pink,
               ),
             ),
           ),
@@ -118,11 +121,13 @@ class _CustomFloatingActionButtonState extends State<CustomFloatingActionButton>
     with TickerProviderStateMixin {
   AnimationController? _controller;
   late Animation _animation;
-  
-Alignment alignment1 = Alignment.bottomCenter;
-Alignment alignment2 = Alignment.bottomCenter;
 
 
+  Alignment alignment1 = Alignment.bottomCenter;
+  Alignment alignment2 = Alignment.bottomCenter;
+
+ Uint8List? _image;
+  File? selectedIMage;
   @override
   void initState() {
     // TODO: implement initState
@@ -144,64 +149,79 @@ Alignment alignment2 = Alignment.bottomCenter;
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Container(
- height: 200,
+      height: 200,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Stack(
           children: [
             AnimatedAlign(
-              duration: toggle ? Duration(milliseconds: 275) : Duration(milliseconds: 875),
-              alignment:alignment1,
+              duration: toggle
+                  ? Duration(milliseconds: 275)
+                  : Duration(milliseconds: 875),
+              alignment: alignment1,
               curve: toggle ? Curves.easeIn : Curves.elasticOut,
-              child: AnimatedContainer(
-                duration: toggle
-                    ? Duration(milliseconds: 275)
-                    : Duration(milliseconds: 875),
-                curve: toggle ? Curves.easeIn : Curves.easeOut,
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: AppColor.dark_1,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Icon(
-                  Icons.image_outlined,
-                  color: AppColor.light,
+              child: GestureDetector(
+                onTap: () async {
+                  print("Gallery Clicked");
+                 _pickImageFromGallery();
+                },
+                child: AnimatedContainer(
+                  duration: toggle
+                      ? Duration(milliseconds: 275)
+                      : Duration(milliseconds: 875),
+                  curve: toggle ? Curves.easeIn : Curves.easeOut,
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: AppColor.dark_1,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Icon(
+                    Icons.image_outlined,
+                    color: AppColor.light,
+                  ),
                 ),
               ),
             ),
-        
-         AnimatedAlign(
-              duration: toggle ? Duration(milliseconds: 275) : Duration(milliseconds: 875),
-              alignment:alignment2,
+            AnimatedAlign(
+              duration: toggle
+                  ? Duration(milliseconds: 275)
+                  : Duration(milliseconds: 875),
+              alignment: alignment2,
               curve: toggle ? Curves.easeIn : Curves.elasticOut,
-              child: AnimatedContainer(
-                duration: toggle
-                    ? Duration(milliseconds: 275)
-                    : Duration(milliseconds: 875),
-                curve: toggle ? Curves.easeIn : Curves.easeOut,
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  color: AppColor.dark_1,
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Icon(
-                  Icons.photo_camera_outlined,
-                  color: AppColor.light,
+              child: GestureDetector(
+                onTap: () async {
+                  print("Camera Clicked");
+               
+                  _pickImageFromCamera();
+
+              
+                },
+                child: AnimatedContainer(
+                  duration: toggle
+                      ? Duration(milliseconds: 275)
+                      : Duration(milliseconds: 875),
+                  curve: toggle ? Curves.easeIn : Curves.easeOut,
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: AppColor.dark_1,
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                  child: Icon(
+                    Icons.photo_camera_outlined,
+                    color: AppColor.light,
+                  ),
                 ),
               ),
             ),
-        
-          
             Transform.rotate(
               angle: _animation.value * (3 / 4),
-            origin: Offset(0.0, 76.0), // Half the width of the FloatingActionButton
+              origin: Offset(
+                  0.0, 76.0), // Half the width of the FloatingActionButton
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: AnimatedContainer(
@@ -215,12 +235,12 @@ Alignment alignment2 = Alignment.bottomCenter;
                         if (toggle) {
                           toggle = !toggle;
                           _controller!.forward();
-                          Future.delayed(Duration(milliseconds: 10) , (){
-                alignment1 = Alignment(-0.4, -0.01);
-                          } );
-                           Future.delayed(Duration(milliseconds: 10) , (){
-                alignment2 = Alignment(0.4, -0.01);
-                          } );
+                          Future.delayed(Duration(milliseconds: 10), () {
+                            alignment1 = Alignment(-0.4, -0.01);
+                          });
+                          Future.delayed(Duration(milliseconds: 10), () {
+                            alignment2 = Alignment(0.4, -0.01);
+                          });
                         } else {
                           toggle = !toggle;
                           _controller!.reverse();
@@ -244,4 +264,69 @@ Alignment alignment2 = Alignment.bottomCenter;
       ),
     );
   }
+
+ 
+  Future _pickImageFromGallery() async {
+    final pickedImage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage == null) return;
+
+    // Crop the selected image
+    final croppedImage = await ImageCropper().cropImage(
+      sourcePath: pickedImage.path,
+      compressFormat: ImageCompressFormat.jpg,
+      compressQuality: 100,
+      cropStyle: CropStyle.rectangle, // Use rectangle crop style
+uiSettings: [AndroidUiSettings(
+  hideBottomControls: true,
+toolbarWidgetColor: AppColor.pink,
+toolbarColor: AppColor.dark_2,
+toolbarTitle: "Crop Image",
+showCropGrid: false,
+backgroundColor: AppColor.dark_1,
+        initAspectRatio: CropAspectRatioPreset.square,
+        lockAspectRatio: true,),
+          IOSUiSettings(
+                    minimumAspectRatio: 1.0, // Set minimum aspect ratio for iOS
+            title: 'Cropper',
+          ),],
+      aspectRatioPresets: [
+        CropAspectRatioPreset.square, // Square aspect ratio
+      ],
+      
+    );
+
+    if (croppedImage == null) return;
+
+    setState(() {
+      print("fingers crossed");
+      selectedIMage = File(croppedImage.path) ;
+    });
+
+    // Navigate to EditScreen with the cropped image
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditScreen(imagepath: selectedIMage!),
+      ),
+    );
+  }
+  Future _pickImageFromCamera() async {
+    final returnImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (returnImage == null) return;
+
+    setState(() {
+      selectedIMage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+    // Navigator.of(context).pop();
+     Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditScreen(imagepath: selectedIMage ?? File('')),
+      ),
+    );
+  }
+
 }

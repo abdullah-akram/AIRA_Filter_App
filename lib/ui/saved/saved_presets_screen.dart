@@ -25,7 +25,7 @@ class SavedPresetsScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: Home_AppBar(
           title: "Saved Presets",
-          onSearchPressed: () => {},
+         
           opacity: 0.0,
           color: Colors.transparent),
       body: Stack(children: <Widget>[
@@ -186,7 +186,7 @@ class SavedPresetsScreen extends StatelessWidget {
                                       mini: true,
                                       onPressed: () {},
                                       shape: const CircleBorder(),
-                                      backgroundColor: Colors.pink,
+                                      backgroundColor: AppColor.pink,
                                       child: const Icon(
                                         Icons.favorite_rounded,
                                         color: AppColor.dark_2,
@@ -196,7 +196,7 @@ class SavedPresetsScreen extends StatelessWidget {
                                       child: RoundedButton(
                                         title: "Connect",
                                         onClick: () {},
-                                        bgcolor: Colors.pink,
+                                        bgcolor: AppColor.pink,
                                         padding: 12,
                                       ),
                                     ),
@@ -207,7 +207,7 @@ class SavedPresetsScreen extends StatelessWidget {
                                   child: RoundedButton(
                                     title: "Try Now",
                                     onClick: () {},
-                                    bgcolor: Colors.pink,
+                                    bgcolor: AppColor.pink,
                                     padding: 8,
                                   ),
                                 ),

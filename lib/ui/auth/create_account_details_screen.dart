@@ -2,6 +2,7 @@ import 'package:aira_filter_app/components/navbar.dart';
 import 'package:aira_filter_app/components/rounded_button.dart';
 import 'package:aira_filter_app/constants/colors.dart';
 import 'package:aira_filter_app/components/login_background.dart';
+import 'package:aira_filter_app/ui/auth/login_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -115,6 +116,10 @@ Align(
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 // Call your onclick function here
+                Navigator.push(
+                     context,
+                     MaterialPageRoute(builder: (context) => LoginScreen()),
+                   );
                 print('Login tapped');
               },
           ),
