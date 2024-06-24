@@ -276,8 +276,9 @@ class _CustomFloatingActionButtonState extends State<CustomFloatingActionButton>
       sourcePath: pickedImage.path,
       compressFormat: ImageCompressFormat.jpg,
       compressQuality: 100,
-      cropStyle: CropStyle.rectangle, // Use rectangle crop style
 uiSettings: [AndroidUiSettings(
+        cropStyle: CropStyle.rectangle, // Use rectangle crop style
+
   hideBottomControls: true,
 toolbarWidgetColor: AppColor.pink,
 toolbarColor: AppColor.dark_2,
@@ -290,9 +291,7 @@ backgroundColor: AppColor.dark_1,
                     minimumAspectRatio: 1.0, // Set minimum aspect ratio for iOS
             title: 'Cropper',
           ),],
-      aspectRatioPresets: [
-        CropAspectRatioPreset.square, // Square aspect ratio
-      ],
+      
       
     );
 
