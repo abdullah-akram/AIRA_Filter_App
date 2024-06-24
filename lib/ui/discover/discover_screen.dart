@@ -30,7 +30,7 @@ class DiscoverScreen extends StatelessWidget {
             children: [
               DiscoverItem(imageUrls: imageUrls,texts: texts, title: "Manage My Network"),
          
-           
+
             ],
           ),
         ),

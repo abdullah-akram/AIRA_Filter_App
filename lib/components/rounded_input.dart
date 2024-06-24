@@ -1,11 +1,13 @@
 import 'package:aira_filter_app/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class RoundedInput extends StatelessWidget {
   final String hintText;
   final TextInputType type;
+  final TextEditingController? controller;
 
-  const RoundedInput({required this.hintText,required this.type});
+   RoundedInput({required this.hintText,required this.type, this.controller  });
 
 
   @override
@@ -14,7 +16,7 @@ class RoundedInput extends StatelessWidget {
       width: double.infinity, // Makes the input field match the screen width
       margin: const EdgeInsets.all(4), // Margin on all sides
       child: TextField(
-        
+        controller: controller,
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0)),

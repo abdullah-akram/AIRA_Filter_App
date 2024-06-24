@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:aira_filter_app/components/notched_container.dart';
@@ -9,8 +10,9 @@ import 'package:flutter/material.dart';
 class FilterCoverScreen extends StatelessWidget {
 
   final int index;
-
-  FilterCoverScreen({required this.index});
+final String image;
+final String title;
+  FilterCoverScreen({required this.index, required this.image,required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class FilterCoverScreen extends StatelessWidget {
         children: [
           // Image asset covering the whole screen
           Positioned.fill(
-            child: Image.asset(
-              imageUrls[index],
+            child: Image.network(
+              image,
               fit: BoxFit.cover,
             ),
           ),
@@ -137,7 +139,7 @@ class FilterCoverScreen extends StatelessWidget {
                           flex: 6, // 70%
                           child: Container(
                             margin: const EdgeInsets.fromLTRB(4, 8.0, 4, 4),
-                            child: const Column(
+                            child:  Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
@@ -161,7 +163,7 @@ class FilterCoverScreen extends StatelessWidget {
                                       fontSize: 12),
                                 ),
                                 Text(
-                                  'Tyler',
+                                  title,
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),

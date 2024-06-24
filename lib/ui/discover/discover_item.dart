@@ -1,13 +1,64 @@
 import 'package:aira_filter_app/components/rounded_button.dart';
 import 'package:aira_filter_app/constants/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class DiscoverItem extends StatelessWidget {
-  final List<String> imageUrls;
-  final List<String> texts;
+class DiscoverItem extends StatefulWidget {
+  List<String> imageUrls;
+  List<String> texts;
+ 
   final String title;
 
-  DiscoverItem({required this.imageUrls, this.texts = const [" ", " "], this.title = "Title"});
+  DiscoverItem({required this.imageUrls,required this.texts, this.title = "Title"});
+
+  @override
+  State<DiscoverItem> createState() => _DiscoverItemState();
+}
+
+class _DiscoverItemState extends State<DiscoverItem> {
+
+
+
+List<String> imageUrls_ = [];
+  List<String> texts_ = [];
+  List<String> by_ = [];
+
+ @override
+  void initState() {
+    super.initState();
+          print("---------------------------------------------------------------------");
+
+    fetchImageUrls();
+  }
+
+  Future<void> fetchImageUrls() async {
+    print("han na");
+    final QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('filters').get();
+
+    final List<String> fetchedImageUrls = [];
+    final List<String> fetchedTexts = []; 
+     final List<String> fetchedTextsBy = []; 
+
+    snapshot.docs.forEach((doc) {
+      fetchedImageUrls.add(doc['image']);
+      fetchedTexts.add(doc['title']);
+      fetchedTextsBy.add(doc['by']);
+
+    });
+
+
+    setState(() {
+      imageUrls_ = fetchedImageUrls;
+      texts_ = fetchedTexts;
+      by_ = fetchedTextsBy;
+      widget.imageUrls = imageUrls_;
+      widget.texts = texts_;
+
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +70,7 @@ class DiscoverItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text(widget.title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               const Row(
                 children: [
                   Text('View', style: TextStyle(fontSize: 16)),
@@ -30,13 +81,13 @@ class DiscoverItem extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.85,
+          height: MediaQuery.of(context).size.height * 0.84,
           child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,  
             childAspectRatio: MediaQuery.of(context).size.width /
             (MediaQuery.of(context).size.height / 1.5),),
             scrollDirection: Axis.vertical,
-            itemCount: imageUrls.length,
+            itemCount: imageUrls_.length,
             itemBuilder: (context, index) {
               return Container(
                 margin: const EdgeInsets.all(4),
@@ -44,7 +95,7 @@ class DiscoverItem extends StatelessWidget {
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: AssetImage(imageUrls[index]),
+                    image: NetworkImage(imageUrls_[index]),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -74,8 +125,13 @@ class DiscoverItem extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(texts[2*index%texts.length], textAlign: TextAlign.start,style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
-                            Text(texts[(2*index+1)%texts.length], textAlign: TextAlign.start,style: const TextStyle(fontSize: 10),),
+Text(
+  texts_[2 * index % texts_.length].length > 10
+      ? texts_[2 * index % texts_.length].substring(0, 9) + '...'
+      : texts_[2 * index % texts_.length],
+  textAlign: TextAlign.start,
+  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+),                            Text("Artist", textAlign: TextAlign.start,style: const TextStyle(fontSize: 10),),
                           ],
                         ),
                       ),

@@ -13,6 +13,8 @@ import 'package:aira_filter_app/ui/profile/help_desk_screen.dart';
 import 'package:aira_filter_app/ui/profile/notifications_screen.dart';
 import 'package:aira_filter_app/ui/profile/profile_cover_screen.dart';
 import 'package:aira_filter_app/ui/settings/settings_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,9 +23,44 @@ class ProfileScreen extends StatelessWidget {
   double op = 0.3;
 
   bool toggle = false;
+  String userNameTemp = "f";
+
+
+Future<String> getUser() async {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final User? user = auth.currentUser;
+  final uid = user?.uid;
+
+  if (uid == null) {
+    print('User is not signed in');
+    return 'Marvin McsKinney';
+  }
+
+  try {
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get();
+
+    if (documentSnapshot.exists) {
+      final userName = documentSnapshot.get('name'); // Replace 'name' with your field name
+      print('Username: $userName');
+      return userName.toString();
+    } else {
+      print('User document does not exist.');
+      return 'Marvin McsKinney';
+    }
+  } catch (error) {
+    print('Error retrieving user document: $error');
+    return 'Marvin McsKinney';
+  }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: Home_AppBar(
         title: "Profile",
@@ -38,6 +75,16 @@ class ProfileScreen extends StatelessWidget {
             opacity: 0.1,
           ),
         ),
+          FutureBuilder<String>(
+          future: getUser(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else {
+              final userName = snapshot.data ?? 'Marvin McsKinney';
+              return
         Column(
           children: [
             GestureDetector(
@@ -53,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white.withOpacity(0.1),
                 ),
-                child: const Row(
+                child:  Row(
                   children: [
                     CircleAvatar(
                       radius: 30,
@@ -66,11 +113,11 @@ class ProfileScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Marvin McKinney',
+                          userName,
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
-                        Text('marvin@gmail.com',
+                        Text(FirebaseAuth.instance.currentUser!.email.toString(),
                             style: TextStyle(
                                 fontSize: 11, fontWeight: FontWeight.w300)),
                       ],
@@ -146,7 +193,9 @@ class ProfileScreen extends StatelessWidget {
               );
             }),
           ],
-        ),
+        );
+            }}),
+    
         Positioned(
           left: 8,
           right: 8,
@@ -165,4 +214,8 @@ class ProfileScreen extends StatelessWidget {
       ]),
     );
   }
+
+
 }
+
+
