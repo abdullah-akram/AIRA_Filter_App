@@ -48,9 +48,24 @@ List<IconData> filterItemIcons = [
   Icons.highlight_sharp,
   Icons.grain,
   Icons.vignette,
+  ];
+
+
+  List<IconData> canvasItemIcons = [
+ Icons.brightness_1,
+ Icons.contrast,
+  Icons.exposure,
+  Icons.highlight_sharp,
+  Icons.grain,
+  Icons.vignette,
+  ];
+
+
+ List<String> filterItemTexts = [
+    '1:1', // Brightness
+    '3:4', // Contrast
+    '4:5', // Exposure
+    '5:4', // Highlight
+    '9:16', // Grain
   
- 
-
-
-];
-
+  ];

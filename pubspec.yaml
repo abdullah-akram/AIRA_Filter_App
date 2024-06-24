@@ -49,6 +49,7 @@ dependencies:
   firebase_database: ^11.0.1
   cloud_firestore: ^5.0.1
   google_sign_in: ^6.2.1
+  crop_image: ^1.0.13
   # firebase_core: ^3.1.0
   # camera: ^0.10.5+9
   # path_provider: ^2.1.3

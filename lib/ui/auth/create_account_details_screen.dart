@@ -63,6 +63,8 @@ class CreateAccountDetailsScreen extends StatelessWidget {
               RoundedButton(
                 title: 'Create Account',
                 onClick: () {
+                  FocusScope.of(context).unfocus();
+
                   if (passwordController.text.length < 8) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
@@ -189,14 +191,7 @@ class CreateAccountDetailsScreen extends StatelessWidget {
 
 Future<void> signUpWithEmailAndPassword(
     String email, String password, String name, BuildContext c) async {
-  try {
-    final authResult =
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-
-    showDialog(
+         showDialog(
       context: c,
       barrierDismissible: false, // Prevent dismissing the dialog
       builder: (BuildContext context) {
@@ -205,6 +200,14 @@ Future<void> signUpWithEmailAndPassword(
         );
       },
     );
+  try {
+    final authResult =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+ 
 
     await FirebaseFirestore.instance
         .collection('users')

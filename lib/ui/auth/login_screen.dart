@@ -75,6 +75,8 @@ class LoginScreen extends StatelessWidget {
                 RoundedButton(
                   title: 'Login',
                   onClick: () {
+                  FocusScope.of(context).unfocus();
+
                     // TODO: Implement button 2 functionality
                     // if (passwordController.text.length < 8) {
                     //   ScaffoldMessenger.of(context).showSnackBar(
