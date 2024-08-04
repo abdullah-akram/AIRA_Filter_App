@@ -12,27 +12,34 @@ class CustomBackground extends StatelessWidget {
     return Stack(
       children: [
         Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-           transform: const GradientRotation(8),
-          colors: [AppColor.pink.withOpacity(0.0), Colors.black,AppColor.pink.withOpacity(0.1)],
-          stops: [0.0, 0.5,1.0],
-          begin: Alignment.bottomRight,
-          end: Alignment.topLeft,
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment.topRight,
+              radius: 2.0, // Increased radius for more coverage
+              colors: [
+                AppColor.pink.withOpacity(1.0), // Increased opacity for more intensity
+                Colors.transparent,
+              ],
+              stops: [0.0, 1.0],
+            ),
+          ),
         ),
-      ),
-    ),
-    Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          transform: const GradientRotation(7),
-          colors: [AppColor.pink.withOpacity(0.0), Colors.black,AppColor.pink.withOpacity(0.1)],
-          stops:  [0.0, 0.5,1.0],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+        Container(
+          decoration: BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment.bottomLeft,
+              radius: 2.0, // Increased radius for more coverage
+              colors: [
+                AppColor.pink.withOpacity(1.0), // Increased opacity for more intensity
+                Colors.transparent,
+              ],
+              stops: [0.0, 1.0],
+            ),
+          ),
         ),
-      ),
-    ),
+        Container(
+          color: Colors.black.withOpacity(0.7), // Adjust the overall dark overlay for better contrast
+        ),
         Opacity(
           opacity: opacity,
           child: Container(

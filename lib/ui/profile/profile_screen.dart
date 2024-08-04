@@ -69,10 +69,9 @@ Future<String> getUser() async {
       ),
       body: Stack(children: <Widget>[
         Opacity(
-          opacity: op,
+          opacity: 1,
           child: CustomBackground(
             imagePath: '',
-            opacity: 0.1,
           ),
         ),
           FutureBuilder<String>(

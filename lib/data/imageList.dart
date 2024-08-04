@@ -38,6 +38,7 @@ List<String> mainEditsTexts = [
   'BRUSHES',
   'ADJUSTMENTS',
   'CANVAS',
+
     // add more URLs if needed
 ];
 
@@ -67,5 +68,6 @@ List<IconData> filterItemIcons = [
     '4:5', // Exposure
     '5:4', // Highlight
     '9:16', // Grain
+    '1:1', // Grain
   
   ];

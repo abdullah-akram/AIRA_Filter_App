@@ -6,6 +6,7 @@ import 'package:aira_filter_app/edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -47,15 +48,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(
-                    context, Icons.home_outlined, Icons.home_filled, 0),
-                _buildNavItem(
-                    context, Icons.explore_outlined, Icons.explore_rounded, 1),
+                _buildNavItem(context, 'assets/images/icons/home.svg', 'assets/images/icons/home.svg', 0),
+                _buildNavItem(context, 'assets/images/icons/global.svg', 'assets/images/icons/global.svg', 1),
                 SizedBox(width: 48), // Same width as the FAB
-                _buildNavItem(context, Icons.favorite_outline_rounded,
-                    Icons.favorite_rounded, 2),
-                _buildNavItem(context, Icons.person_outline_rounded,
-                    Icons.person_rounded, 3),
+                _buildNavItem(context, 'assets/images/icons/heart.svg', 'assets/images/icons/heart.svg', 2),
+                _buildNavItem(context, 'assets/images/icons/profile.svg', 'assets/images/icons/profile.svg', 3),
               ],
             ),
           ),
@@ -64,20 +61,20 @@ class _CustomAppBarState extends State<CustomAppBar> {
     );
   }
 
-  Widget _buildNavItem(
-      BuildContext context, IconData icon, IconData iconfilled, int index) {
+  Widget _buildNavItem(BuildContext context, String iconPath, String iconFilledPath, int index) {
     return Stack(
       children: [
         IconButton(
-          icon: Icon(widget.selectedItemIndex == index ? iconfilled : icon,
-              color: widget.selectedItemIndex == index
-                  ? AppColor.pink
-                  : Colors.white),
+          icon: SvgPicture.asset(
+            widget.selectedItemIndex == index ? iconFilledPath : iconPath,
+            color: widget.selectedItemIndex == index ? AppColor.pink : Colors.white,
+            width: 24, // Adjust the size as needed
+            height: 24,
+          ),
           onPressed: () {
             switch (index) {
               case 0:
                 Navigator.pushNamed(context, '/home');
-
                 break;
               case 1:
                 Navigator.pushNamed(context, '/discover');

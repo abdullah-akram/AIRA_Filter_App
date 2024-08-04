@@ -58,10 +58,10 @@ class _ProfileCoverScreenState extends State<ProfileCoverScreen> {
       ),
       body: Stack(children: <Widget>[
         Opacity(
-          opacity: 0.3,
+          opacity: 1,
           child: CustomBackground(
             imagePath: '',
-            opacity: 0.1,
+          
           ),
         ),
         FutureBuilder<Map<String, String>>(

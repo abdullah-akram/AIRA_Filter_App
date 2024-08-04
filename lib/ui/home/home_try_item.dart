@@ -9,10 +9,10 @@ class HomeTryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-              margin: const EdgeInsets.all(10),
+              margin: const EdgeInsets.fromLTRB(10,0,10,10),
                 height: MediaQuery.of(context).size.height * 0.2,
                 decoration: BoxDecoration(
-                  color: Colors.transparent.withOpacity(0.5),
+                  color: Color.fromARGB(0, 39, 39, 39).withOpacity(0.5),
                   borderRadius: const BorderRadius.all(
                     Radius.circular(20),
                     

@@ -76,6 +76,31 @@ class LoginScreen extends StatelessWidget {
                   title: 'Login',
                   onClick: () {
                   FocusScope.of(context).unfocus();
+                   if (
+                        emailController.text.isEmpty ||
+                        passwordController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: AppColor.dark_1,
+                          content: Text("Fields can't be empty",
+                              style: TextStyle(color: AppColor.light)),
+                          duration: Duration(
+                              seconds: 3), // Adjust the duration as needed
+                        ),
+                      );
+                    } 
+                    else if (!emailController.text.contains(".com") && !emailController.text.contains("@")) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          backgroundColor: AppColor.dark_1,
+                          content: Text('Enter a valid email address',
+                              style: TextStyle(color: AppColor.light)),
+                          duration: Duration(
+                              seconds: 3), // Adjust the duration as needed
+                        ),
+                      );
+                    }
+
 
                     // TODO: Implement button 2 functionality
                     // if (passwordController.text.length < 8) {
@@ -89,8 +114,10 @@ class LoginScreen extends StatelessWidget {
                     //     ),
                     //   );
                     // }
+                    else{
                     signInWithEmailAndPassword(
                         emailController.text, passwordController.text, context);
+                    }
                     //      Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -124,11 +151,12 @@ class LoginScreen extends StatelessWidget {
 
                 RoundedButton(
                   title: 'Sign up with Google',
-
                   onClick: () {
                     // TODO: Implement button 2 functionality
                   },
                   bgcolor: AppColor.dark_1, // Button color
+                  iconPath: 'assets/images/icons/google_icon.svg', // Path to SVG icon
+ // Add this line
                 ),
 
                 RoundedButton(
@@ -137,6 +165,8 @@ class LoginScreen extends StatelessWidget {
                     // TODO: Implement button 2 functionality
                   },
                   bgcolor: AppColor.dark_1, // Button color
+                  iconPath: 'assets/images/icons/fb_icon.svg', // Path to SVG icon
+ // Add this line
                 ),
                 Expanded(
                   child:

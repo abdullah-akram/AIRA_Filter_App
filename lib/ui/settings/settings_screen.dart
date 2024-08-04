@@ -27,10 +27,10 @@ class SettingsScreen extends StatelessWidget {
       appBar: Home_AppBar(title: "Settings",tol: false,leading: true,),
       body: Stack(children: <Widget>[
         Opacity(
-          opacity: 0.3,
+          opacity: 1,
           child: CustomBackground(
             imagePath: '',
-            opacity: 0.1,
+     
           ), 
         ),
    Column(

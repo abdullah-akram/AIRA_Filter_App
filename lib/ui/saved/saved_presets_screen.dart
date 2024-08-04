@@ -30,16 +30,16 @@ class SavedPresetsScreen extends StatelessWidget {
           color: Colors.transparent),
       body: Stack(children: <Widget>[
         Opacity(
-          opacity: 0.3,
+          opacity: 1,
           child: CustomBackground(
             imagePath: '',
-            opacity: 0.1,
+           
           ),
         ),
         Column(
           children: [
             Container(
-              height: kToolbarHeight + 10,
+              height: kToolbarHeight + 30,
             ),
             Container(
               height: MediaQuery.of(context).size.height * 0.3,

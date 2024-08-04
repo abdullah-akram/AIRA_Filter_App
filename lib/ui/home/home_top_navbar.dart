@@ -31,25 +31,23 @@ class Home_AppBar extends StatelessWidget implements PreferredSizeWidget {
                   MaterialPageRoute(builder: (context) => SearchScreen()),
                 );  }
                 
-    return  AppBar(
-      leading: leading? Icon(Icons.arrow_back_ios): null,
-        backgroundColor: color.withOpacity(opacity),
-        elevation: 0,
-        titleSpacing:leading?0: 10,
-        title: Text(title),
-        automaticallyImplyLeading: leading,
-
-        
-        actions: [
-          Visibility(
-            visible: tol,
-            child: IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: onSearchPressed ?? defaultOnSearchPressed,
+    return   AppBar(
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.black, Color.fromARGB(255, 87, 23, 49)],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
             ),
           ),
-        ],
-      );
+        ),
+        title: Text(title),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Define the action for the back button here
+          },
+        ));
     
   }
 

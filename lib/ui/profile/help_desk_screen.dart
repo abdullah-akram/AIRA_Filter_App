@@ -26,10 +26,10 @@ class HelpDeskScreen extends StatelessWidget {
       ),
       body: Stack(children: <Widget>[
         Opacity(
-          opacity: 0.3,
+          opacity: 1,
           child: CustomBackground(
             imagePath: '',
-            opacity: 0.1,
+          
           ),
         ),
         Container(

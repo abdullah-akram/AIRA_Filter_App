@@ -19,10 +19,10 @@ class DiscoverScreen extends StatelessWidget {
       appBar: Home_AppBar(title: "Discover"),
       body: Stack(children: <Widget>[
         Opacity(
-          opacity: 0.3,
+          opacity: 1,
           child: CustomBackground(
             imagePath: '',
-            opacity: 0.1,
+            
           ),
         ),
         SingleChildScrollView(

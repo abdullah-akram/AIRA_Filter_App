@@ -6,13 +6,14 @@ import 'package:aira_filter_app/components/rounded_button.dart';
 import 'package:aira_filter_app/constants/colors.dart';
 import 'package:aira_filter_app/data/imageList.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FilterCoverScreen extends StatelessWidget {
-
   final int index;
-final String image;
-final String title;
-  FilterCoverScreen({required this.index, required this.image,required this.title});
+  final String image;
+  final String title;
+  FilterCoverScreen(
+      {required this.index, required this.image, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,13 @@ final String title;
                                       const CircleBorder(), // This makes the button round
 
                                   onPressed: () {},
-                                  child: const Icon(Icons.favorite_outline),
+                                  child: SvgPicture.asset(
+                                    'assets/images/icons/message_notif.svg', // Replace with your SVG asset path
+                                    width: 20, // Set the width as needed
+                                    height: 20, // Set the height as needed
+                                    color: const Color.fromARGB(255, 0, 0,
+                                        0), // Optionally, set the color of the SVG
+                                  ),
                                 ),
                                 FloatingActionButton(
                                   backgroundColor: AppColor.pink,
@@ -71,7 +78,13 @@ final String title;
                                       const CircleBorder(), // This makes the button round
 
                                   onPressed: () {},
-                                  child: const Icon(Icons.textsms_outlined),
+                                  child: SvgPicture.asset(
+                                    'assets/images/icons/heart.svg', // Replace with your SVG asset path
+                                    width: 20, // Set the width as needed
+                                    height: 20, // Set the height as needed
+                                    color: const Color.fromARGB(255, 0, 0,
+                                        0), // Optionally, set the color of the SVG
+                                  ),
                                 ),
                               ],
                             ),
@@ -102,13 +115,17 @@ final String title;
                                   ),
                                 ),
                                 RichText(
-                                  text: const TextSpan(
+                                  text:  TextSpan(
                                     children: [
                                       WidgetSpan(
-                                        child: Icon(
-                                            Icons.favorite_outline_rounded,
-                                            size:
-                                                12), // Adjust the size as needed
+                                        child: SvgPicture.asset(
+                                          'assets/images/icons/heart.svg', // Replace with your SVG asset path
+                                          width: 12, // Set the width as needed
+                                          height:
+                                              12, // Set the height as needed
+                                          color: Colors
+                                              .white, // Optionally, set the color of the SVG
+                                        ), // Adjust the size as needed
                                       ),
                                       TextSpan(
                                           text: "1.7K",
@@ -118,12 +135,17 @@ final String title;
                                 ),
 
                                 RichText(
-                                  text: const TextSpan(
+                                  text: TextSpan(
                                     children: [
                                       WidgetSpan(
-                                        child: Icon(Icons.textsms_outlined,
-                                            size:
-                                                12), // Adjust the size as needed
+                                        child: SvgPicture.asset(
+                                          'assets/images/icons/message_notif.svg', // Replace with your SVG asset path
+                                          width: 12, // Set the width as needed
+                                          height:
+                                              12, // Set the height as needed
+                                          color: Colors
+                                              .white, // Optionally, set the color of the SVG
+                                        ), // Adjust the size as needed
                                       ),
                                       TextSpan(
                                           text: " 700",
@@ -139,7 +161,7 @@ final String title;
                           flex: 6, // 70%
                           child: Container(
                             margin: const EdgeInsets.fromLTRB(4, 8.0, 4, 4),
-                            child:  Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
@@ -178,20 +200,24 @@ final String title;
                   Expanded(
                     flex: 5,
                     child: Container(
-                      height:MediaQuery.of(context).size.height * 0.23,
+                      height: MediaQuery.of(context).size.height * 0.23,
                       child: Stack(
                         children: <Widget>[
                           // First image
                           Positioned(
                             bottom: 20,
-                            left:15,
+                            left: 15,
                             child: Container(
                               child: Transform.rotate(
-                                angle: -0.3, // Adjust the rotation angle as needed
+                                angle:
+                                    -0.3, // Adjust the rotation angle as needed
                                 child: Container(
-                                  height: MediaQuery.of(context).size.height * 0.14,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.14,
                                   child: Image.asset(
-                                      'assets/images/covers/Rectangle3.png',fit: BoxFit.contain,),
+                                    'assets/images/covers/Rectangle3.png',
+                                    fit: BoxFit.contain,
+                                  ),
                                 ), // Replace with your first image asset
                               ),
                             ),
@@ -199,34 +225,34 @@ final String title;
                           // Second image
                           Positioned(
                             right: 5,
-                            bottom:20,
+                            bottom: 20,
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.17,
-                              
                               child: Transform.rotate(
-                                angle: 0.1, // Adjust the rotation angle as needed
+                                angle:
+                                    0.1, // Adjust the rotation angle as needed
                                 child: Image.asset(
-                                    imageUrls[index],fit: BoxFit.contain,), // Replace with your second image asset
+                                  imageUrls[index],
+                                  fit: BoxFit.contain,
+                                ), // Replace with your second image asset
                               ),
                             ),
                           ),
                           Positioned(
-          bottom: 0,
-          left: 0,
-          child:RoundedButton(
-            title: "Try Now",
-            onClick: () {},
-            bgcolor: AppColor.pink,
-            width: 130,
-            padding: 4,
-            margin: 8,
-          ),
-        ),
+                            bottom: 0,
+                            left: 0,
+                            child: RoundedButton(
+                              title: "Try Now",
+                              onClick: () {},
+                              bgcolor: AppColor.pink,
+                              width: 130,
+                              padding: 4,
+                              margin: 8,
+                            ),
+                          ),
                         ],
                       ),
                     ),
-
-                    
                   ),
                 ]),
               ),
@@ -240,7 +266,13 @@ final String title;
           onPressed: () {
             // Add your floating action button's onPressed logic here
           },
-          child: const Icon(Icons.arrow_drop_down_outlined),
+          child: SvgPicture.asset(
+            'assets/images/icons/arrow_down.svg', // Replace with your SVG asset path
+            width: 24, // Set the width as needed
+            height: 24, // Set the height as needed
+            color: const Color.fromARGB(
+                255, 0, 0, 0), // Optionally, set the color of the SVG
+          ),
           backgroundColor: AppColor.pink,
         ),
       ),
